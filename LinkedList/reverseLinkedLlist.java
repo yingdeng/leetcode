@@ -57,9 +57,9 @@ public class ReverseLinkedList {
 			current = current.next;
 		}
 		current.next = head; // assign the head as a tail
-                head.next = null; // set head.next as null, head is tail
+        head.next = null; // set head.next as null, head is tail
 
-                return remainingReverse;
+        return remainingReverse;
 	}
 
 	/*
