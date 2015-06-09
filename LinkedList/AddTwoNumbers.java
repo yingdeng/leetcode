@@ -26,6 +26,30 @@ public class AddTwoNumbers {
 		if (l1 == null && l2 == null) {
 			return null;
 		}
-
-    }
+		int carry = 0;
+ 
+                ListNode dummy = new ListNode(0);
+                //ListNode p1 = l1, p2 = l2, 
+                ListNode helper = dummy;
+ 
+                while(l1 != null || l2 != null){
+                    if(l1 != null){
+                       carry += l1.val;
+                       l1 = l1.next;
+                    }
+                    if(l2 != null){
+                       carry += l2.val;
+                       l2 = l2.next;
+                    }
+ 
+                helper.next = new ListNode(carry%10);
+                helper = helper.next;
+                carry /= 10;
+                }
+ 
+                if(carry==1) 
+                helper.next = new ListNode(1);
+ 
+               return dummy.next;
+        }
 }
