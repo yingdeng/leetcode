@@ -8,7 +8,7 @@ public class Solution {
         String[] keyboard = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
         int index = 0;
         StringBuilder sb = new StringBuilder();
-        helper(digits, index, sb, keyboard, result);
+        helper(digits, 0, sb, keyboard, result);
         return result;
     }
    
@@ -19,7 +19,7 @@ public class Solution {
         }
         
         int num = digits.charAt(index)-'0';
-        for (int i=0; i<keyboard[num].length(); i++) {
+        for (int i = 0; i < keyboard[num].length(); i++) {
             sb.append(keyboard[num].charAt(i));
             helper(digits, index+1, sb, keyboard, result);
             sb.deleteCharAt(sb.length() - 1);
