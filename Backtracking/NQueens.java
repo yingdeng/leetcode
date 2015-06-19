@@ -1,30 +1,52 @@
+/*
+The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
+
+Given an integer n, return all distinct solutions to the n-queens puzzle.
+Each solution contains a distinct board configuration of the n-queens' placement, where 'Q' and '.' both indicate a queen and an empty space respectively.
+
+For example,
+There exist two distinct solutions to the 4-queens puzzle:
+
+[
+ [".Q..",  // Solution 1
+  "...Q",
+  "Q...",
+  "..Q."],
+
+ ["..Q.",  // Solution 2
+  "Q...",
+  "...Q",
+  ".Q.."]
+]
+*/
+
 public class Solution {
-    public ArrayList<String[]> solveNQueens(int n) {
-        ArrayList<String[]> result = new ArrayList<String[]>();
-        if (n<=0) {
+    public List<String[]> solveNQueens(int n) {
+        List<String[]> result = new ArrayList<>();
+        if (n <= 0) {
             return result;
         }
-        search(n, new ArrayList<Integer>(), result);
+        search(n, new List<Integer>(), result);
         return result;
     }
     
-    private boolean isValid(ArrayList<Integer> cols, int col){
+    private boolean isValid(List<Integer> cols, int col){
         int row = cols.size();
-        for (int i=0; i<row; i++){
+        for (int i = 0; i < row; i++){
             if (cols.get(i) == col){
                 return false;
             }
-            if (i-cols.get(i) == row-col){
+            if (i - cols.get(i) == row - col){
                 return false;
             }
-            if (i+cols.get(i) == row+col){
+            if (i + cols.get(i) == row + col){
                 return false;
             }
         }
         return true;
     }
     
-    private void search(int n, ArrayList<Integer> cols, ArrayList<String[]> result){
+    private void search(int n, List<Integer> cols, List<String[]> result){
         if(cols.size() == n){
             result.add(drawChessBoard(cols));
             return;
@@ -35,15 +57,15 @@ public class Solution {
             }
             cols.add(col);
             search(n, cols, result);
-            cols.remove(cols.size()-1);
+            cols.remove(cols.size() - 1);
         }
     }
     
-    private String[] drawChessBoard(ArrayList<Integer> cols){
+    private String[] drawChessBoard(List<Integer> cols){
         String[] chessBoard = new String[cols.size()];
-        for (int i=0; i<cols.size(); i++){
+        for (int i = 0; i < cols.size(); i++){
             chessBoard[i] = "";
-            for (int j=0; j<cols.size(); j++){
+            for (int j = 0; j < cols.size(); j++){
                 if(j == cols.get(i)){
                     chessBoard[i] += "Q";
                 }
