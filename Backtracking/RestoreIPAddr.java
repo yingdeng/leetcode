@@ -1,17 +1,24 @@
+/*Given a string containing only digits, restore it by returning all possible valid IP address combinations.
+
+For example:
+Given "25525511135",
+return ["255.255.11.135", "255.255.111.35"]. (Order does not matter)
+*/
+
 public class Solution {
-    public ArrayList<String> restoreIpAddresses(String s) {
-        ArrayList<String> result = new ArrayList<>();
-        ArrayList<String> list = new ArrayList<>();
+    public List<String> restoreIpAddresses(String s) {
+        List<String> result = new ArrayList<>();
+        List<String> tempList = new ArrayList<>();
         
         if (s.length() < 3 || s.length() > 12) {
             return result;
         }
-        helper(s, 0, list, result);
+        helper(s, 0, tempList, result);
         return result;
     }
     
-    public void helper(String s, int index, ArrayList<String> list, ArrayList<String> result) {
-        if (list.size() == 4) {
+    public void helper(String s, int index, List<String> tempList, List<String> result) {
+        if (tempList.size() == 4) {
             if (index != s.length()) {
                 return;
             }
@@ -26,12 +33,12 @@ public class Solution {
             return;
         }
         
-        for (int i=index; i<=index+3 && i<s.length(); i++) {
-            String subStr = s.substring(index, i+1);
+        for (int i = index; i <= index+3 && i < s.length(); i++) {
+            String subStr = s.substring(index, i + 1);
             if (isValid(subStr)) {
                 list.add(subStr);
-                helper(s, i+1, list, result);
-                list.remove(list.size()-1);
+                helper(s, i + 1, list, result);
+                list.remove(list.size() - 1);
             }
         }
     }
