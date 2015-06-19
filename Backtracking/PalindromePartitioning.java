@@ -1,12 +1,24 @@
+/*
+Given a string s, partition s such that every substring of the partition is a palindrome.
+Return all possible palindrome partitioning of s.
+
+For example, given s = "aab",
+Return
+  [
+    ["aa","b"],
+    ["a","a","b"]
+  ]
+*/
+
 public class Solution {
-    public ArrayList<ArrayList<String>> partition(String s) {
-        ArrayList<ArrayList<String>> result = new ArrayList<>();
-        ArrayList<String> list = new ArrayList<>();
+    public List<List<String>> partition(String s) {
+        List<List<String>> result = new ArrayList<>();
+        List<String> tempList = new ArrayList<>();
         
         if (s.length() == 0 || s == null) {
-            return null;
+            return result;
         }
-        helper(s, 0, list, result);
+        helper(s, 0, tempList, result);
         return result;
     }
     
@@ -23,19 +35,18 @@ public class Solution {
         return true;
     }
     
-    private void helper(String s, int index, ArrayList<String> list, ArrayList<ArrayList<String>> result) {
+    private void helper(String s, int index, ArrayList<String> tempList, ArrayList<ArrayList<String>> result) {
         if (index == s.length()) {
-            result.add(new ArrayList<String> (list));
+            result.add(new ArrayList<String> (tempList));
             return;
         }
         for (int i = index + 1; i <= s.length(); i++) {
             String str = s.substring(index, i);
-            if (!isPalindrome(str)) {
-                continue;
+            if (isPalindrome(str)) {
+                list.add(str);
+                helper(s, i, tempList, result);
+                tempList.remove(tempList.size() - 1);
             }
-        list.add(str);
-        helper(s, i, list, result);
-        list.remove(list.size() - 1);
         }
     }
 }
