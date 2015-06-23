@@ -1,3 +1,11 @@
+/*
+Maximum Product Subarray - 
+Find the contiguous subarray within an array (containing at least one number) which has the largest product.
+
+For example, given the array [2,3,-2,4],
+the contiguous subarray [2,3] has the largest product = 6.
+*/
+
 public class Solution {
     public int maxProduct(int[] A) {
         if (A == null || A.length == 0) {
@@ -12,8 +20,8 @@ public class Solution {
         int res = A[0];
         for (int i = 1; i < A.length; i++) {
             int max_copy = max;
-            max = Math.max(Math.max(A[i]*max, A[i]), A[i]*min);
-            min = Math.min(Math.min(A[i]*max_copy, A[i]), A[i]*min);
+            max = Math.max(Math.max(A[i] * max, A[i]), A[i] * min);
+            min = Math.min(Math.min(A[i] * max_copy, A[i]), A[i] * min);
             res = Math.max(res, max);
         }
         
