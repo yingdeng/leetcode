@@ -1,24 +1,40 @@
+/*
+Given two integers n and k, return all possible combinations of k numbers out of 1 ... n.
+
+For example,
+If n = 4 and k = 2, a solution is:
+
+[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]
+*/
+
 public class Solution {
-    public ArrayList<ArrayList<Integer>> combine(int n, int k) {
-        ArrayList<ArrayList<Integer>> res = new ArrayList<ArrayList<Integer>>();
-        ArrayList<Integer> list = new ArrayList<Integer>();
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> tempList = new ArrayList<>();
         if (n == 0 || n < k){
             return res;
         }
-        helper(res, list, n, k, 1);
+        helper(res, tempList, n, k, 1);
         return res;
     }
     
-    private void helper(ArrayList<ArrayList<Integer>> res, 
-        ArrayList<Integer> list, int n, int k, int start) {
+    private void helper(List<List<Integer>> res, 
+        List<Integer> list, int n, int k, int start) {
             if (list.size() == k){
-                res.add(new ArrayList<Integer>(list));
+                res.add(new ArrayList<Integer>(tempList));
                 return;
             }
-            for(int i=start; i<=n; i++){
-                list.add(i);
-                helper(res, list, n, k, i+1);
-                list.remove(list.size()-1);
+            for(int i = start; i <= n; i++){
+                tempList.add(i);
+                helper(res, list, n, k, i + 1);
+                tempList.remove(list.size() - 1);
             }
         }
 }

@@ -1,11 +1,21 @@
 /*
 Decode Ways - 
+<<<<<<< HEAD
 A message containing letters from A-Z is being encoded to numbers using the following mapping:
+=======
+
+A message containing letters from A-Z is being encoded to numbers using the following mapping:
+
+>>>>>>> c82b2decd465a6c9af48d90d8d57606a4456d950
 'A' -> 1
 'B' -> 2
 ...
 'Z' -> 26
 Given an encoded message containing digits, determine the total number of ways to decode it.
+<<<<<<< HEAD
+=======
+
+>>>>>>> c82b2decd465a6c9af48d90d8d57606a4456d950
 For example,
 Given encoded message "12", it could be decoded as "AB" (1 2) or "L" (12).
 The number of ways decoding "12" is 2.
@@ -31,11 +41,11 @@ public class Solution {
         
         // Two numbers of s
         for (int i = 2; i <= s.length(); i++) {
-            if (isValid(s.substring(i-1, i))) {
-                res[i] += res[i-1];
+            if (isValid(s.substring(i - 1, i))) {
+                res[i] += res[i - 1];
             }
-            if (isValid(s.substring(i-2, i))) {
-                res[i] += res[i-2];
+            if (isValid(s.substring(i - 2, i))) {
+                res[i] += res[i - 2];
             }
         }
         

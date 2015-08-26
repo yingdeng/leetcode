@@ -1,7 +1,14 @@
 /*
 Minimum Path Sum - 
+<<<<<<< HEAD:DP/MaxPathSum.java
 Given a m x n grid filled with non-negative numbers, 
 find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+=======
+
+Given a m x n grid filled with non-negative numbers, 
+find a path from top left to bottom right which minimizes the sum of all numbers along its path.
+
+>>>>>>> c82b2decd465a6c9af48d90d8d57606a4456d950:DP/MinPathSum.java
 Note: You can only move either down or right at any point in time.
 */
 

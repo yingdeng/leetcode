@@ -1,32 +1,38 @@
+/*
+Given a collection of numbers that might contain duplicates, return all possible unique permutations.
+
+For example,
+[1,1,2] have the following unique permutations:
+[1,1,2], [1,2,1], and [2,1,1].
+*/
+
 public class Solution {
-    public ArrayList<ArrayList<Integer>> permuteUnique(int[] num) {
-        ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-        if(num == null || num.length == 0){
-            return result;
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (nums == null || nums.length == 0) {
+            return res;
         }
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        boolean[] visited = new boolean[num.length];
         
-        Arrays.sort(num);
-        helper(result, list, visited, num);
-        return result;
+        Arrays.sort(nums);
+        List<Integer> list = new ArrayList<>();
+        boolean[] visited = new boolean[nums.length];
+        helper(res, list, visited, nums);
+        return res;
     }
     
-    private void helper(ArrayList<ArrayList<Integer>> result, 
-        ArrayList<Integer> list, boolean[] visited, int[] num){
-        if(list.size() == num.length){
-            result.add(new ArrayList<Integer>(list));
-            return;
+    private void helper(List<List<Integer>> res, List<Integer> list, boolean[] visited, int[] nums) {
+        if (list.size() == nums.length) {
+            res.add(new ArrayList<Integer>(list));
+            //return;
         }
-        
-        for(int i=0; i<num.length; i++){
-            if(visited[i] == true || (i != 0 && num[i] == num[i-1] && visited[i-1] == false)){
+        for (int i = 0; i < nums.length; i++) {
+            if (visited[i] == true || (i != 0 && nums[i] == nums[i - 1] && visited[i - 1] == false)) {
                 continue;
             }
             visited[i] = true;
-            list.add(num[i]);
-            helper(result, list, visited, num);
-            list.remove(list.size()-1);
+            list.add(nums[i]);
+            helper(res, list, visited, nums);
+            list.remove(list.size() - 1);
             visited[i] = false;
         }
     }
